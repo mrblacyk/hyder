@@ -16,7 +16,7 @@
 
 Hyder is a project which aims to automate some actions which one can do during HackTheBox Battlegrounds game. Depending on the modules, this tool can be used elsewhere as well and fit perfectly.
 
-Hyder name can be interpreted in two ways. First, it's "hi there" written short. Second, it's "hide" but cooler. That's why there are two main functionalities in this project: `attack` and `defend` modules.
+Hyder name can be interpreted in two ways. First, it's "hi there" written short. Second, it's "hider" but cooler. That's why there are two main functionalities in this project: `attack` and `defend` modules.
 
 ## Screenshots
 

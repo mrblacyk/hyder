@@ -5,7 +5,7 @@ from hyderaddons import bcolors
 class BackdoorPasswd:
 
     name = "backdoor_passwd"
-    description = ""
+    description = "Adds static /etc/passwd entry for user mysqldemon"
     safe = False
 
     def run(self, sshclient, args, server):

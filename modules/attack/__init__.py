@@ -17,3 +17,6 @@ modules.append(BackdoorNologinFalse)
 # Backdoor Passwd
 from .backdoor_passwd import BackdoorPasswd
 modules.append(BackdoorPasswd)
+
+from .grab_flags import GrabFlags
+modules.append(GrabFlags)

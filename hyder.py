@@ -125,13 +125,15 @@ def list_modules(args):
         return logging.error("Category not found")
     print("Available modules: ")
     for module in modules_list:
-        print("\t- " + module.name)
+        print("\t- " + hyderaddons.bcolors.green(module.name))
+        print("\t  Description: " + hyderaddons.bcolors.blue(module.description) + "\n")
     return True
 
 def common_parser_args(parser):
     parser.add_argument("modules", type=str, help="Which modules to run, can include asterisk to wildcard or use 'all' to run all of them. For instance: 'backdoor*'. To list attack modules execute: " + parser.prog + " list attack")
     parser.add_argument("-v", "--verbose", required=False, action="store_true")
     parser.add_argument("-s", "--safe", required=False, action="store_true", help="Run only 'safe' modules")
+    parser.add_argument("-e", "--env", required=False, action="append", help="Pass variable to the module. This can be used many times. For instance: -e HOST=10.10.10.10 -e PORT=4444")
     parser.add_argument("-t", "--timeout", required=False, type=int, help="Timeout for the SSH connect. Defaults to: 3", default=3)
     parser.add_argument(
         "--sshkey", required=False,
@@ -182,6 +184,19 @@ def main():
 
     attack_parser.add_argument("--backdoor_pwd", required=False, type=str, default="Passw0rd", help="Defaults to: Passw0rd")
     args = parser.parse_args()
+    
+    if 'env' in args and args.env:
+        env_vars = {}
+        for var in args.env:
+            try:
+                env_vars[var.split("=")[0]] = var.split("=")[1]
+            except:
+                logging.warning("Could not parse module variable: " + var + ". This won't be available in the module. Does it have format of KEY=VALUE?")
+        args.env = env_vars
+    else:
+        args.env = {}
+
+    logging.debug(args.env)
 
     if args.which == 'main':
         return parser.print_help()
@@ -204,7 +219,7 @@ def main():
         servers.append({
             "IP": args.ip.strip(), "user": args.user.strip(), "pwd": args.pwd.strip()
         })
-    
+
     if 'which' in args:
         if 'modules' in args:
             return execute_modules(args)

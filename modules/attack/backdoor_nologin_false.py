@@ -5,7 +5,11 @@ from hyderaddons import bcolors
 class BackdoorNologinFalse:
 
     name = "backdoor_nologin_false"
-    description = ""
+    description = """Appends '.f' to /usr/sbin/nologin and /bin/false binaries.
+Copies bash in their location making 'disabled' accounts reachable over, for instance, SSH.
+It then overwrites /etc/shadow in a way that all those accounts using nologin or false
+have password. The password is controlled by -b/--backdoor_pwd switch.
+"""
     safe = False
 
     def run(self, sshclient, args, server):

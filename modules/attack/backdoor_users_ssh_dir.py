@@ -5,7 +5,10 @@ from hyderaddons import bcolors
 class BackdoorUsersSshDir:
 
     name = "backdoor_users_ssh_dir"
-    description = ""
+    description = """Gathers user directories from /etc/passwd. Then, it creates
+.ssh directory for each of them and creates/overwrites .ssh/authorized_keys file
+with the public key defined in hyderaddons.shared_pub_key
+"""
     safe = False
 
     def run(self, sshclient, args, server):

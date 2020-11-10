@@ -32,10 +32,33 @@ Hyder can give you dense output:
 
 ![https://imgur.com/GTIVXDi.png](https://imgur.com/GTIVXDi.png)
 
+## Requirements
+
+Hyder requires Python 3.6 or higher.
 
 ## Installation
 
 
+```
+# Make sure you're in the hyder directory
+cd hyder
+
+# Install all non built-in libraries
+pip3 install -r requirements
+
+# Make hyder executable
+chmod +x ./hyder.py
+
+# Add it to your PATH temporarily
+export PATH=$PATH:$PWD
+
+# Add hyder to your PATH, persistent way
+# Uncomment if you know what you're doing
+# It of course assumes you're using bash
+#
+# echo export PATH=$PATH:$PWD >> ~/.bashrc
+# source ~/.bashrc
+```
 
 ## Usage
 

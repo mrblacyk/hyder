@@ -8,6 +8,7 @@ import crypt
 import socket
 import modules
 import hyderaddons
+import sys
 
 from re import search as re_search
 
@@ -231,4 +232,7 @@ def main():
 
 if __name__ == "__main__":
     print(hyderaddons.logo)
+    if not sys.version_info >= (3, 6):
+        logging.error("Use Python 3.6 or higher")
+        sys.exit(1)
     main()

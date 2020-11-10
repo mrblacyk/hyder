@@ -103,14 +103,18 @@ def execute_modules(args):
 
     else:
         logging.debug("I'm feeling picky with modules: " + args.modules)
+        didrun = False
         for module in modules.__getattribute__(args.which).modules:
-            if re_search(args.modules.replace('*', '.+'), module.name):
+            if re_search("^" + args.modules.replace('*', '.+') + "$", module.name):
                 print(hyderaddons.bcolors.blue("\n" + "#" * 80))
                 print(
                     hyderaddons.bcolors.blue("\t->") + " MODULE:    " + module.name
                 )
                 print(hyderaddons.bcolors.blue("#" * 80))
                 loop_through_servers(module().run, args)
+                didrun = True
+        if not didrun:
+            logging.warning("No module ran")
     
     close_connections()
 

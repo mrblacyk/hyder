@@ -101,5 +101,5 @@ targets:
 # When you only want to provide credentials for one server
 # When you only want backdoor modules
 # When you only want "safe" modules
-./hyder.py attack all --ip 172.17.0.2 --user root --pwd Passw0rd --safe
+./hyder.py attack backdoor* --ip 172.17.0.2 --user root --pwd Passw0rd --safe
 ```

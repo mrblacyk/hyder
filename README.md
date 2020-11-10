@@ -62,7 +62,7 @@ optional arguments:
 ```
 $ ./hyder.py attack -h
 
-usage: hyder.py attack [-h] [-v] [-s] [-t TIMEOUT] [--sshkey SSHKEY] [-H HOSTS] [-i IP] [-u USER] [-p PWD] [--backdoor_pwd BACKDOOR_PWD] modules
+usage: hyder.py attack [-h] [-v] [-s] [-e ENV] [-t TIMEOUT] [--sshkey SSHKEY] [-H HOSTS] [-i IP] [-u USER] [-p PWD] [--backdoor_pwd BACKDOOR_PWD] modules
 
 positional arguments:
   modules               Which modules to run, can include asterisk to wildcard or use 'all' to run all of them. For instance: 'backdoor*'. To list attack modules execute: hyder.py attack list attack
@@ -71,6 +71,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -v, --verbose
   -s, --safe            Run only 'safe' modules
+  -e ENV, --env ENV     Pass variable to the module. This can be used many times. For instance: -e HOST=10.10.10.10 -e PORT=4444
   -t TIMEOUT, --timeout TIMEOUT
                         Timeout for the SSH connect. Defaults to: 3
   --sshkey SSHKEY       RSA key to be used in SSH connection. Point to a file location and use 'sshkey' as password in config file

@@ -28,6 +28,10 @@ Hyder can give you dense output:
 
 ![https://imgur.com/ARKGnTr.png](https://imgur.com/ARKGnTr.png)
 
+..or list available modules for given modules category:
+
+![https://imgur.com/GTIVXDi.png](https://imgur.com/GTIVXDi.png)
+
 
 ## Installation
 

@@ -5,10 +5,14 @@ class DeploySnoopy:
     
     name = "deploy_snoopy"
     description = """Install snoopy.
-Provide -e SNOOPYRESTART=yes to restart apache2, smbd and ssh services afterwards"""
+Provide -e SNOOPYRESTART=yes to restart apache2 and smbd services afterwards"""
     safe = True
 
     def run(self, sshclient, args, server):
+        # Remove leftovers
+        sshclient.exec_command("rm -rf /usr/local/lib/libsnoopy.so")
+        sshclient.exec_command("rm -rf /etc/snoopy.ini")
+
         sftp = sshclient.open_sftp()
         sftp.put("./modules/defend/files/libsnoopy.so.2.4.8", "/usr/local/lib/libsnoopy.so")
         sftp.put("./modules/defend/files/snoopy.ini", "/etc/snoopy.ini")
@@ -27,11 +31,10 @@ Provide -e SNOOPYRESTART=yes to restart apache2, smbd and ssh services afterward
         ))
 
         if args.env.get("SNOOPYRESTART"):
-            logging.info("Restarting apache2, smbd and ssh services")
+            logging.info("Restarting apache2 and smbd services")
             sshclient.exec_command((
                 "systemctl restart apache2 &>/dev/null;"
                 "systemctl restart smbd &>/dev/null;"
-                "systemctl restart ssh &>/dev/null;"
             ))
-            print("Restarted " + bcolors.orange("apache2,smbd,ssh") + " services")
+            print("Restarted " + bcolors.orange("apache2,smbd") + " services")
         return True

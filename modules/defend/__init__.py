@@ -6,7 +6,7 @@ modules = []
 
 # Register modules here
 
-# Backdoor Users
+# Deploy Snoopy
 from .deploy_snoopy import DeploySnoopy
 modules.append(DeploySnoopy)
 

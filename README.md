@@ -32,6 +32,10 @@ Hyder can give you dense output:
 
 ![https://imgur.com/GTIVXDi.png](https://imgur.com/GTIVXDi.png)
 
+## How to contribute your module
+
+You are more than welcome to submit your modules! Here's the [CONTRIBUTE guide](CONTRIBUTE.md) which should make everything smoother.
+
 ## Requirements
 
 Hyder requires Python 3.6 or higher.

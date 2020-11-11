@@ -62,7 +62,11 @@ def loop_through_servers(func, args):
         logging.debug(client)
         logging.debug(server)
         with hyderaddons.Capturing() as output:
-            cmd_output = func(client, args, server)
+            try:
+                cmd_output = func(client, args, server)
+            except:
+                print("Module failed")
+                cmd_output = False
         outputs.append([server["IP"], cmd_output, output.copy()])
         del output
     if not args.verbose:

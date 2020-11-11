@@ -90,7 +90,7 @@ Module:
 import logging, datetime
 
 class PrintTime:
-    name = "Print time example module"
+    name = "printtime"
     description = "Module which prints time so operator know when hyder was run when viewing console history of any sort"
     safe = True
 

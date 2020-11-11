@@ -112,6 +112,7 @@ def execute_modules(args):
             )
             print(hyderaddons.bcolors.blue("#" * 80))
             loop_through_servers(module().run, args)
+            didrun = True
 
     else:
         logging.debug("I'm feeling picky with modules: " + args.modules)

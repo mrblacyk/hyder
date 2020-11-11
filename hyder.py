@@ -95,6 +95,8 @@ def execute_modules(args):
     if args.modules == 'all':
         logging.debug("Executing all modules")
         for module in modules.__getattribute__(args.which).modules:
+            if args.safe and not module.safe:
+                continue
             print(hyderaddons.bcolors.blue("\n" + "#" * 80))
             print(
                 hyderaddons.bcolors.blue("\t->") + " MODULE:    " + module.name

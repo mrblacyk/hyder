@@ -97,6 +97,10 @@ def execute_modules(args):
     initialize_connections(args)
     didrun = False
 
+    global connections
+    if not connections:
+        return logging.error("No servers to execute modules")
+
     if args.modules == 'all':
         logging.debug("Executing all modules")
         for module in modules.__getattribute__(args.which).modules:

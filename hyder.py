@@ -91,6 +91,7 @@ def close_connections():
 
 def execute_modules(args):
     initialize_connections(args)
+    didrun = False
 
     if args.modules == 'all':
         logging.debug("Executing all modules")
@@ -106,8 +107,9 @@ def execute_modules(args):
 
     else:
         logging.debug("I'm feeling picky with modules: " + args.modules)
-        didrun = False
         for module in modules.__getattribute__(args.which).modules:
+            if args.safe and not module.safe:
+                continue
             if re_search("^" + args.modules.replace('*', '.+') + "$", module.name):
                 print(hyderaddons.bcolors.blue("\n" + "#" * 80))
                 print(
@@ -116,8 +118,8 @@ def execute_modules(args):
                 print(hyderaddons.bcolors.blue("#" * 80))
                 loop_through_servers(module().run, args)
                 didrun = True
-        if not didrun:
-            logging.warning("No module ran")
+    if not didrun:
+        logging.warning("No module ran")
     
     close_connections()
 

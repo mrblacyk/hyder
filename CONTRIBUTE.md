@@ -7,17 +7,18 @@ You want to contribute a module or two? Awesome! There are basically two steps:
 
 ## Module structure
 
-Each module has to be contained in a single class containing two major components:
+Each module has to be contained in a single class containing three major components:
 
-* Three **class** variables
-    - `name` (a str variable)
-    - `description` (a str variable)
-    - `safe` (a bool variable)
+* Three **class** variables:
+    - `name` (a str variable),
+    - `description` (a str variable),
+    - `safe` (a bool variable).
 * One **instance** method named `run` taking four arguments:
-    - `self`
-    - `sshclient`
-    - `args`
-    - `server`
+    - `self`,
+    - `sshclient`,
+    - `args`,
+    - `server`.
+* `run` method must return `True` indicating it was executed correctly. Everything else will be treated as a fail.
 
 ### `sshclient`
 
@@ -99,6 +100,8 @@ class PrintTime:
         logging.debug("Server IP: " + server.get("IP", "Unknown"))
         print(f"{server.get('IP')}: {datetime.datetime.utcnow()}")
 
+        return True
+
 ```
 
 Defend `__init__.py` file:
@@ -117,3 +120,7 @@ modules = []
 from .printtime.py import PrintTime
 modules.append(PrintTime)
 ```
+
+# Note
+
+Hyder is built in a way that by default it prints only module's `print()` from the first server. For the rest of servers, a simple `OK` or `FAILED` is displayed (don't forget to return `True` when everything was executed properly). Operator can change this behavior by providing `-v` when executing hyder. `logging` however is printed indepdently so it's crucial you use `logging.error("Error message")` and `logging.warning("Warning message")` when you can catch in the module something going sideways.

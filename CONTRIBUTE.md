@@ -7,8 +7,9 @@ You want to contribute a module or two? Awesome! There are basically two steps:
 
 ## Module structure
 
-Each module has to be contained in a single class containing three major components:
+Each module has to be contained in a single class containing four major components:
 
+* A class which derives from ModuleBaseClass (abstract class to check everything was implemented)
 * Three **class** variables:
     - `name` (a str variable),
     - `description` (a str variable),
@@ -65,7 +66,6 @@ It's easy as adding two lines of code and one comment. Here's the `__init__.py` 
 
 ```python
 import sys
-
 sys.path.append('../..')
 
 modules = []
@@ -89,8 +89,9 @@ Module:
 
 ```python
 import logging, datetime
+from hyderaddons import ModuleBaseClass
 
-class PrintTime:
+class PrintTime(ModuleBaseClass):
     name = "printtime"
     description = "Module which prints time so operator know when hyder was run when viewing console history of any sort"
     safe = True
@@ -108,7 +109,6 @@ Defend `__init__.py` file:
 
 ```python
 import sys
-
 sys.path.append('../..')
 
 modules = []

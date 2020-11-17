@@ -1,8 +1,8 @@
 import logging
 import crypt
-from hyderaddons import bcolors
+from hyderaddons import bcolors, ModuleBaseClass
 
-class BackdoorNologinFalse:
+class BackdoorNologinFalse(ModuleBaseClass):
 
     name = "backdoor_nologin_false"
     description = """Appends '.f' to /usr/sbin/nologin and /bin/false binaries.

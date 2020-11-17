@@ -1,6 +1,7 @@
 import logging
+from hyderaddons import ModuleBaseClass
 
-class LocalTcpdump:
+class LocalTcpdump(ModuleBaseClass):
 
     name = "local_tcpdump_systemd"
     description = """Run tcpdump listening on any interface using systemd. Writes output to /root/.dump.pcap by default

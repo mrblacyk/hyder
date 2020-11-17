@@ -1,8 +1,8 @@
 import logging
 from datetime import datetime
-from hyderaddons import bcolors
+from hyderaddons import bcolors, ModuleBaseClass
 
-class GrabFlags:
+class GrabFlags(ModuleBaseClass):
 
     name = "htbbg_grab_flags"
     description = """HackTheBox Battlegrounds flag grabber.

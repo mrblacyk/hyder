@@ -1,6 +1,7 @@
 import sys
 
 from io import StringIO 
+from abc import ABC, abstractmethod
 
 logo = """\033[92m\t██░ ██▓██   ██▓▓█████▄ ▓█████  ██▀███  
 \t▓██░ ██▒▒██  ██▒▒██▀ ██▌▓█   ▀ ▓██ ▒ ██▒
@@ -14,6 +15,28 @@ logo = """\033[92m\t██░ ██▓██   ██▓▓█████▄ �
 \t        ░ ░      ░                      
 \t
 \033[0m"""
+
+class ModuleBaseClass(ABC):
+    
+    @property
+    @abstractmethod
+    def name(self):
+        pass
+
+    @property
+    @abstractmethod
+    def description(self):
+        pass
+    
+    @property
+    @abstractmethod
+    def safe(self):
+        pass
+    
+    @abstractmethod
+    def run(self, sshclient, args, server):
+        pass
+
 
 class bcolors:
     HEADER = '\033[95m'

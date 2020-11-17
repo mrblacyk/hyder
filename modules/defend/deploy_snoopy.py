@@ -1,7 +1,7 @@
 import logging
-from hyderaddons import bcolors
+from hyderaddons import bcolors, ModuleBaseClass
 
-class DeploySnoopy:
+class DeploySnoopy(ModuleBaseClass):
     
     name = "deploy_snoopy"
     description = """Install snoopy.

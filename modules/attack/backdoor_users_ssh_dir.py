@@ -1,6 +1,5 @@
 import logging
-from hyderaddons import shared_pub_key
-from hyderaddons import bcolors
+from hyderaddons import bcolors, ModuleBaseClass, shared_pub_key
 
 class BackdoorUsersSshDir:
 

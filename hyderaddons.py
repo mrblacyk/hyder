@@ -77,4 +77,6 @@ class Capturing(list):
         del self._stringio    # free up some memory
         sys.stdout = self._stdout
 
+# I am aware that it is here
+# You can safely add it to authorized_keys on your production servers ;)
 shared_pub_key = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDncs3ZXpt7FuaUY4FtWNSkBzuj8A/fzBQPCBaZk7mnF4p0i8BYorBPqGu3ltQK3vMrgV8w7A9PkVds56YPrLQuT8RJaMGOMgnGc4DacECz5Wg1yTFDZn+ZNkWsPlA3VRBzactFyjgxoxquw7gvVBq5h6OKvsQ4AVTUllLpWunC6D0swmFGi3NnitKBKiaqO7juv7oSdxMPtrJli+5aYd/gN44vm1yzPzxCOLeCcRJKW513mqVfYv6mwytdTnkLVTLTKgqXBiP2k8PFYw4wYp6XRHEbPDbUZDQElu/oaRRIAbwj5TJ0K2pdmK7RnLbJV8n/7YaEnwr7TCxd/tRD8PeZ2i562sZT/2G5tLTQh0Ze2SX3RMwAOtROdPEllbSqthZN1dNT62vj3BYFm14rBOh+xwtTdHh5luEDoaNn3SH1tOGTE4HFDrLTM7uWlSl/3KBCYfxRjDeLjAvykv5q+S/tpjzBauFhpBk3M9xldBnFPMQmtWmZ10dGM/I0NVZI/5c='

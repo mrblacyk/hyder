@@ -17,5 +17,6 @@ modules.append(BackdoorNologinFalse)
 from .backdoor_passwd import BackdoorPasswd
 modules.append(BackdoorPasswd)
 
-from .grab_flags import GrabFlags
+# HTB Battlegrounds flag grabber
+from .htbbg_grab_flags import GrabFlags
 modules.append(GrabFlags)

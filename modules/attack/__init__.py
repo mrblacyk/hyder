@@ -20,3 +20,7 @@ modules.append(BackdoorPasswd)
 # HTB Battlegrounds flag grabber
 from .htbbg_grab_flags import GrabFlags
 modules.append(GrabFlags)
+
+# HTB Battlegrounds ippsec troll
+from .htbbg_troll_ippsec import TrollIppsec
+modules.append(TrollIppsec)
